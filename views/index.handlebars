@@ -1,0 +1,54 @@
+<main class="container">
+    <script src="../public/js/burger.js"></script>
+    <div class="row justify-content-center m-2">
+        <div class="col-3">
+            <img class="burgerPic" src="burgerPic.jpeg" alt="Deconstructued Burger being held by chef">
+        </div>
+    </div>
+
+    <div class="row mt-4 justify-content-center">
+        <div class="col-4 unEatenList m-2">
+            <H3>Burgers ready to eat</H3>
+            <ol>
+
+
+                {{#each burger}}
+                <div class="row">
+                    <li class="col-7 burgerItem ">
+
+                        <p>{{this.burger_name}}</p>
+                    </li>
+                    <div class=" col-3 devourBTN">
+                        <button> Devour </button>
+                    </div>
+                </div>
+
+                {{/each}}
+
+            </ol>
+        </div>
+
+
+        <div class="col-4 eatenList m-2">
+            <H3>Burgers already eaten</H3>
+            <ol>
+
+
+               
+            </ol>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <form >
+
+            <div class="row justify-content-center m-2"></div>
+            <textarea id="burgerTxt" type="text" name="addBurger"></textarea>
+            <div class="row justify-content-center m-2">
+                <button class="submitBtn">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</main>
