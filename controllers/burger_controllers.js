@@ -21,29 +21,30 @@ router.get("/", function (req, res) {
 router.post("/api/burgers", function (req, res) {
     // console.log("test: ",burgerName)
 
-    
-
-    burger.createBurger( ["new burger", false], function (result) {
+// need to replace new burger with variable
+    burger.createBurger(["new burger", false], function (result) {
         res.json(id.result.burgerId)
-        
     })
 })
 
-// router.push("/api/burger/:id", function(req, res){
-//     var itemdId = "id = " + req.params.id;
-
-//     burger.updateBurger({
-//         devoured: req.body.devoured
-//     }, itemdId, function(res){
-//         if (res.changedRows == 0 ) {
-//             return res.status(404).end()
-//         } else{
-//             res.status(200).end();
-//         }
-//     })
-// })
-
-// Create express app instance.
 
 
-module.exports = router // some sort of router 
+router.put("/api/burger/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("condition", condition);
+
+    burger.updateBurger({
+        devoured: req.body.devoured
+    }, condition, function (result) {
+        if (result.changedRows == 0) {
+            
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+});
+
+
+module.exports = router 

@@ -13,6 +13,7 @@
 
 
                 {{#each burger}}
+                   {{#unless devoured}}
                 <div class="row">
                     <li class="col-7 burgerItem ">
 
@@ -22,7 +23,7 @@
                         <button> Devour </button>
                     </div>
                 </div>
-
+            {{/unless}}
                 {{/each}}
 
             </ol>
@@ -33,7 +34,19 @@
             <H3>Burgers already eaten</H3>
             <ol>
 
-i have no idea how to do this 
+                {{#each burger}}
+                {{#if devoured}}
+              <div class="row">
+                    <li class="col-7 burgerItem ">
+
+                        <p>{{this.burger_name}}</p>
+                    </li>
+                    
+                </div>
+
+                {{/if}}
+                {{/each}}
+
 
             </ol>
         </div>

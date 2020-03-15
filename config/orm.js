@@ -29,6 +29,23 @@ var orm = {
                 })
       },
 
+      update: function(objColVals, condition, cb) {
+        var queryString = "UPDATE burgers";
+    
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+    
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      },
       // update: function() {
       //   connection.query("UPDATE burger SET devoured = true WHERE id = 2",
       //           [

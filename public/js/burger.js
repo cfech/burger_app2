@@ -19,26 +19,26 @@ $(function () {
         );
     });
 
-    $(".devourBTN").on("click", function(event) {
+    $(".devourBTN").on("click", function (event) {
         console.log("help")
         var id = $(this).data("id");
         console.log(id)
-        // var eaten = $(this).data("newsleep");
-    
-        // var newSleepState = {
-        //   sleepy: newSleep
-        // };
-    
-        // // Send the PUT request.
-        // $.ajax("/api/cats/" + id, {
-        //   type: "PUT",
-        //   data: newSleepState
-        // }).then(
-        //   function() {
-        //     console.log("changed sleep to", newSleep);
-        //     // Reload the page to get the updated list
-        //     location.reload();
-        //   }
-        // );
-      });
+        var eatenBurger = {
+            id: id, 
+            devoured: true
+        }
+       
+
+        // Send the PUT request.
+        $.ajax("/api/cats/" + id, {
+            type: "PUT",
+            data: eatenBurger
+        }).then(
+            function () {
+                console.log("changed sleep to", newSleep);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
 })
