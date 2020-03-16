@@ -1,10 +1,15 @@
+//requiring mysql node package
 var mysql = require("mysql");
 
 var connection;
 
+//If statement for JAWSDB mysql connection
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL)
-} else {
+}
+
+//If no JAWSDB then connect locally.
+else {
     connection =
         mysql.createConnection({
             host: "localhost",
@@ -21,8 +26,8 @@ connection.connect(function (err) {
         console.error("error connecting: " + err.stack);
         return;
     }
-
     console.log("connected as id " + connection.threadId);
 });
 
+//Exporting connection
 module.exports = connection

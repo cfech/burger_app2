@@ -1,29 +1,30 @@
+//Require the orm
 var orm = require("../config/orm.js")
 
+//Burger object that builds the get, create and update functions 
 var burger = {
-    getAll: function (cb) {
 
+    //calling the get all function which calls the all function in the orm
+    getAll: function (cb) {
         orm.all("burgers", function (res) {
             cb(res);
         })
     },
+
+    //Calling the create burger function which calls the create function in the orm
     createBurger: function (value, cb) {
-        console.log("create function model called")
         orm.create(value, function (res) {
-            console.log("create burger callback called")
             cb(res)
         })
     },
 
+    //Calling the update burger function which calls the update function in the orm
     updateBurger: function (objColVals, condition, cb) {
-        console.log("in update burger function")
-        console.log(objColVals)
-        console.log(condition)
         orm.update(objColVals, condition, function (res) {
-            console.log("calling back model")
             cb(res);
         });
     },
 }
 
+//Exporting burger object
 module.exports = burger
