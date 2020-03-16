@@ -9,10 +9,10 @@ $(function () {
         console.log(burgerName)
         $.ajax("/api/burgers", {
             type: "POST",
-            value: burgerName
+            data: {burgerName}
         }).then(
             function () {
-
+                console.log("trying to reload")
                 // Reload the page to get the updated list
                 location.reload();
             }
@@ -30,12 +30,12 @@ $(function () {
        
 
         // Send the PUT request.
-        $.ajax("/api/cats/" + id, {
+        $.ajax("/api/burgers/" + id, {
             type: "PUT",
             data: eatenBurger
         }).then(
             function () {
-                console.log("changed sleep to", newSleep);
+                console.log("changed burger eaten  to", eatenBurger);
                 // Reload the page to get the updated list
                 location.reload();
             }

@@ -2,6 +2,31 @@ var connection = require("./connection") /// ????
 
 connection
 
+function objToSql(ob) {
+  var arr = [];
+
+  // loop through the keys and push the key/value as a string int arr
+  for (var key in ob) {
+    var value = ob[key];
+    // check to skip hidden properties
+    if (Object.hasOwnProperty.call(ob, key)) {
+      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+      // e.g. {sleepy: true} => ["sleepy=true"]
+      arr.push(key + "=" + value);
+    }
+  }
+
+  // translate array of strings to a single comma-separated string
+  return arr.toString();
+}
+
+
+
+
 var orm = {
 
     all: function(burger, cb) {
@@ -25,7 +50,7 @@ var orm = {
         
                     console.log(" burger inserted!\n")
                     if (err) throw err;
-        
+                    cb()
                 })
       },
 
@@ -42,22 +67,11 @@ var orm = {
           if (err) {
             throw err;
           }
-    
+          console.log("calling back orm")
           cb(result);
         });
       },
-      // update: function() {
-      //   connection.query("UPDATE burger SET devoured = true WHERE id = 2",
-      //           [
-      //           ],
-      //           function (err, res) { //need to update 
-      //               console.log("in connection")
-      //               if (err) throw err;
-      //               console.log(res.affectedRows + " burger was updated!\n");
-        
-      //           })
-      //   }
-
+    
 }
 
 module.exports = orm

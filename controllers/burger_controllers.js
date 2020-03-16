@@ -19,17 +19,18 @@ router.get("/", function (req, res) {
 });
 
 router.post("/api/burgers", function (req, res) {
-    // console.log("test: ",burgerName)
+    console.log(req.body)
 
 // need to replace new burger with variable
-    burger.createBurger(["new burger", false], function (result) {
-        res.json(id.result.burgerId)
+    burger.createBurger([req.body.burgerName, false], function (result) {
+        console.log("route callback called")
+        res.end()
     })
 })
 
 
 
-router.put("/api/burger/:id", function (req, res) {
+router.put("/api/burgers/:id", function (req, res) {
     var condition = "id = " + req.params.id;
 
     console.log("condition", condition);

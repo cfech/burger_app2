@@ -8,16 +8,22 @@ var burger = {
         })
     },
     createBurger: function (value, cb) {
+        console.log("create function model called")
         orm.create(value, function (res) {
+            console.log("create burger callback called")
             cb(res)
         })
     },
 
     updateBurger: function (objColVals, condition, cb) {
-        orm.update("cats", objColVals, condition, function (res) {
+        console.log("in update burger function")
+        console.log(objColVals)
+        console.log(condition)
+        orm.update(objColVals, condition, function (res) {
+            console.log("calling back model")
             cb(res);
         });
     },
 }
 
-module.exports = burger//whatever object you pu models in 
+module.exports = burger
